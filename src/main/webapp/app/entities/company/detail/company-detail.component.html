@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="company">
+      <h2 data-cy="companyDetailsHeading"><span jhiTranslate="tiskelCashRegisterManagerApp.company.detail.title">Company</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ company.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.company.created">Created</span></dt>
+        <dd>
+          <span>{{ company.created | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.company.nip">Nip</span></dt>
+        <dd>
+          <span>{{ company.nip }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.company.regon">Regon</span></dt>
+        <dd>
+          <span>{{ company.regon }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.company.street">Street</span></dt>
+        <dd>
+          <span>{{ company.street }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.company.city">City</span></dt>
+        <dd>
+          <span>{{ company.city }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.company.postCode">Post Code</span></dt>
+        <dd>
+          <span>{{ company.postCode }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/company', company.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

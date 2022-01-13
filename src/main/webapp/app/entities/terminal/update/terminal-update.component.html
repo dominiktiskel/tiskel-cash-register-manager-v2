@@ -1,0 +1,305 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-terminal-heading"
+        data-cy="TerminalCreateUpdateHeading"
+        jhiTranslate="tiskelCashRegisterManagerApp.terminal.home.createOrEditLabel"
+      >
+        Create or edit a Terminal
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.terminal.created" for="field_created">Created</label>
+          <div class="d-flex">
+            <input
+              id="field_created"
+              data-cy="created"
+              type="datetime-local"
+              class="form-control"
+              name="created"
+              formControlName="created"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('created')!.invalid && (editForm.get('created')!.dirty || editForm.get('created')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('created')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('created')?.errors?.ZonedDateTimelocal"
+              jhiTranslate="entity.validation.ZonedDateTimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.terminal.payedBy" for="field_payedBy"
+            >Payed By</label
+          >
+          <select class="form-control" name="payedBy" formControlName="payedBy" id="field_payedBy" data-cy="payedBy">
+            <option [ngValue]="null">{{ 'tiskelCashRegisterManagerApp.TerminalPayedByType.null' | translate }}</option>
+            <option *ngFor="let terminalPayedByType of terminalPayedByTypeValues" [value]="terminalPayedByType">
+              {{ 'tiskelCashRegisterManagerApp.TerminalPayedByType.' + terminalPayedByType | translate }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('payedBy')!.invalid && (editForm.get('payedBy')!.dirty || editForm.get('payedBy')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('payedBy')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.terminal.payedToDate" for="field_payedToDate"
+            >Payed To Date</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_payedToDate"
+              data-cy="payedToDate"
+              type="datetime-local"
+              class="form-control"
+              name="payedToDate"
+              formControlName="payedToDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('payedToDate')!.invalid && (editForm.get('payedToDate')!.dirty || editForm.get('payedToDate')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('payedToDate')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('payedToDate')?.errors?.ZonedDateTimelocal"
+              jhiTranslate="entity.validation.ZonedDateTimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.terminal.number" for="field_number">Number</label>
+          <input type="number" class="form-control" name="number" id="field_number" data-cy="number" formControlName="number" />
+          <div *ngIf="editForm.get('number')!.invalid && (editForm.get('number')!.dirty || editForm.get('number')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('number')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('number')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.terminal.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.terminal.description" for="field_description"
+            >Description</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="tiskelCashRegisterManagerApp.terminal.subscriptionRenewalEnabled"
+            for="field_subscriptionRenewalEnabled"
+            >Subscription Renewal Enabled</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="subscriptionRenewalEnabled"
+            id="field_subscriptionRenewalEnabled"
+            data-cy="subscriptionRenewalEnabled"
+            formControlName="subscriptionRenewalEnabled"
+          />
+          <div
+            *ngIf="
+              editForm.get('subscriptionRenewalEnabled')!.invalid &&
+              (editForm.get('subscriptionRenewalEnabled')!.dirty || editForm.get('subscriptionRenewalEnabled')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('subscriptionRenewalEnabled')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="tiskelCashRegisterManagerApp.terminal.subscriptionRenewalTrialCount"
+            for="field_subscriptionRenewalTrialCount"
+            >Subscription Renewal Trial Count</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="subscriptionRenewalTrialCount"
+            id="field_subscriptionRenewalTrialCount"
+            data-cy="subscriptionRenewalTrialCount"
+            formControlName="subscriptionRenewalTrialCount"
+          />
+          <div
+            *ngIf="
+              editForm.get('subscriptionRenewalTrialCount')!.invalid &&
+              (editForm.get('subscriptionRenewalTrialCount')!.dirty || editForm.get('subscriptionRenewalTrialCount')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('subscriptionRenewalTrialCount')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('subscriptionRenewalTrialCount')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="tiskelCashRegisterManagerApp.terminal.subscriptionPeriod"
+            for="field_subscriptionPeriod"
+            >Subscription Period</label
+          >
+          <select
+            class="form-control"
+            name="subscriptionPeriod"
+            formControlName="subscriptionPeriod"
+            id="field_subscriptionPeriod"
+            data-cy="subscriptionPeriod"
+          >
+            <option [ngValue]="null">{{ 'tiskelCashRegisterManagerApp.TerminalSubscriptionPeriod.null' | translate }}</option>
+            <option *ngFor="let terminalSubscriptionPeriod of terminalSubscriptionPeriodValues" [value]="terminalSubscriptionPeriod">
+              {{ 'tiskelCashRegisterManagerApp.TerminalSubscriptionPeriod.' + terminalSubscriptionPeriod | translate }}
+            </option>
+          </select>
+          <div
+            *ngIf="
+              editForm.get('subscriptionPeriod')!.invalid &&
+              (editForm.get('subscriptionPeriod')!.dirty || editForm.get('subscriptionPeriod')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('subscriptionPeriod')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.terminal.active" for="field_active">Active</label>
+          <input type="checkbox" class="form-check" name="active" id="field_active" data-cy="active" formControlName="active" />
+          <div *ngIf="editForm.get('active')!.invalid && (editForm.get('active')!.dirty || editForm.get('active')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('active')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.terminal.errorMessage" for="field_errorMessage"
+            >Error Message</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="errorMessage"
+            id="field_errorMessage"
+            data-cy="errorMessage"
+            formControlName="errorMessage"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.terminal.company" for="field_company">Company</label>
+          <select class="form-control" id="field_company" data-cy="company" name="company" formControlName="company">
+            <option *ngIf="!editForm.get('company')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="companyOption.id === editForm.get('company')!.value?.id ? editForm.get('company')!.value : companyOption"
+              *ngFor="let companyOption of companiesSharedCollection; trackBy: trackCompanyById"
+            >
+              {{ companyOption.id }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['company'])!.invalid && (editForm.get(['company'])!.dirty || editForm.get(['company'])!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['company'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

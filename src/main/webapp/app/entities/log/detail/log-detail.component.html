@@ -1,0 +1,44 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="log">
+      <h2 data-cy="logDetailsHeading"><span jhiTranslate="tiskelCashRegisterManagerApp.log.detail.title">Log</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ log.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.log.created">Created</span></dt>
+        <dd>
+          <span>{{ log.created | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.log.type">Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'tiskelCashRegisterManagerApp.LogType.' + log.type }}">{{ log.type }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.log.message">Message</span></dt>
+        <dd>
+          <span>{{ log.message }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.log.data">Data</span></dt>
+        <dd>
+          <span>{{ log.data }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/log', log.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

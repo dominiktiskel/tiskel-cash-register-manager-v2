@@ -1,0 +1,58 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="invoice">
+      <h2 data-cy="invoiceDetailsHeading"><span jhiTranslate="tiskelCashRegisterManagerApp.invoice.detail.title">Invoice</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ invoice.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.invoice.created">Created</span></dt>
+        <dd>
+          <span>{{ invoice.created | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.invoice.payedDate">Payed Date</span></dt>
+        <dd>
+          <span>{{ invoice.payedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.invoice.periodBeginDate">Period Begin Date</span></dt>
+        <dd>
+          <span>{{ invoice.periodBeginDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.invoice.periodEndDate">Period End Date</span></dt>
+        <dd>
+          <span>{{ invoice.periodEndDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.invoice.number">Number</span></dt>
+        <dd>
+          <span>{{ invoice.number }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.invoice.jsonData">Json Data</span></dt>
+        <dd>
+          <span>{{ invoice.jsonData }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.invoice.company">Company</span></dt>
+        <dd>
+          <div *ngIf="invoice.company">
+            <a [routerLink]="['/company', invoice.company?.id, 'view']">{{ invoice.company?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/invoice', invoice.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

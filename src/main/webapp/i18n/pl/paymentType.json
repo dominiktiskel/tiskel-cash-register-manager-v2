@@ -1,0 +1,9 @@
+{
+  "tiskelCashRegisterManagerApp": {
+    "PaymentType": {
+      "null": "",
+      "PAY_BY_LINK": "PAY_BY_LINK",
+      "CARD": "CARD"
+    }
+  }
+}

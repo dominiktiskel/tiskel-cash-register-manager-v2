@@ -1,0 +1,37 @@
+{
+  "tiskelCashRegisterManagerApp": {
+    "terminal": {
+      "home": {
+        "title": "Terminal",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Dodaj Terminal",
+        "createOrEditLabel": "Dodaj lub edytuj: Terminal",
+        "notFound": "No Terminals found"
+      },
+      "created": "Utworzono nowy obiekt typu Terminal z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Terminal z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Terminal z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Terminal {{ id }}?"
+      },
+      "detail": {
+        "title": "Terminal"
+      },
+      "id": "ID",
+      "created": "Created",
+      "payedBy": "Payed By",
+      "payedToDate": "Payed To Date",
+      "number": "Number",
+      "name": "Name",
+      "description": "Description",
+      "subscriptionRenewalEnabled": "Subscription Renewal Enabled",
+      "subscriptionRenewalTrialCount": "Subscription Renewal Trial Count",
+      "subscriptionPeriod": "Subscription Period",
+      "active": "Active",
+      "errorMessage": "Error Message",
+      "receipt": "Receipt",
+      "paymentItem": "Payment Item",
+      "company": "Company"
+    }
+  }
+}

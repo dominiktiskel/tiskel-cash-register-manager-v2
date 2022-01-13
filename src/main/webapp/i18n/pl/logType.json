@@ -1,0 +1,11 @@
+{
+  "tiskelCashRegisterManagerApp": {
+    "LogType": {
+      "null": "",
+      "DEBUG": "DEBUG",
+      "INFO": "INFO",
+      "WARNING": "WARNING",
+      "ERROR": "ERROR"
+    }
+  }
+}
