@@ -1,0 +1,27 @@
+{
+  "tiskelCashRegisterManagerApp": {
+    "log": {
+      "home": {
+        "title": "Log",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Dodaj Log",
+        "createOrEditLabel": "Dodaj lub edytuj: Log",
+        "notFound": "No Logs found"
+      },
+      "created": "Utworzono nowy obiekt typu Log z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Log z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Log z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Log {{ id }}?"
+      },
+      "detail": {
+        "title": "Log"
+      },
+      "id": "ID",
+      "created": "Created",
+      "type": "Type",
+      "message": "Message",
+      "data": "Data"
+    }
+  }
+}

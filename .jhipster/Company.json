@@ -1,0 +1,72 @@
+{
+  "name": "Company",
+  "fields": [
+    {
+      "fieldName": "created",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "nip",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "regon",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "street",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "city",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "postCode",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "cashRegister",
+      "otherEntityRelationshipName": "company",
+      "relationshipName": "cashRegister"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "receipt",
+      "otherEntityRelationshipName": "company",
+      "relationshipName": "receipt"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "terminal",
+      "otherEntityRelationshipName": "company",
+      "relationshipName": "terminal"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "payment",
+      "otherEntityRelationshipName": "company",
+      "relationshipName": "payment"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "invoice",
+      "otherEntityRelationshipName": "company",
+      "relationshipName": "invoice"
+    }
+  ],
+  "entityTableName": "company",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20220113115809"
+}

@@ -1,0 +1,44 @@
+{
+  "tiskelCashRegisterManagerApp": {
+    "receipt": {
+      "home": {
+        "title": "Receipt",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Dodaj Receipt",
+        "createOrEditLabel": "Dodaj lub edytuj: Receipt",
+        "notFound": "No Receipts found"
+      },
+      "created": "Utworzono nowy obiekt typu Receipt z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Receipt z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Receipt z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Receipt {{ id }}?"
+      },
+      "detail": {
+        "title": "Receipt"
+      },
+      "id": "ID",
+      "status": "Status",
+      "created": "Created",
+      "orderId": "Order Id",
+      "price": "Price",
+      "tiskelCorporateId": "Tiskel Corporate Id",
+      "tiskelLicenseId": "Tiskel License Id",
+      "taxiNumber": "Taxi Number",
+      "driverId": "Driver Id",
+      "customerId": "Customer Id",
+      "customerPhoneNumber": "Customer Phone Number",
+      "customerEmail": "Customer Email",
+      "emailSentStatus": "Email Sent Status",
+      "deliveryType": "Delivery Type",
+      "printerType": "Printer Type",
+      "jsonData": "Json Data",
+      "printData": "Print Data",
+      "jwtData": "Jwt Data",
+      "errorMessage": "Error Message",
+      "company": "Company",
+      "cashRegister": "Cash Register",
+      "terminal": "Terminal"
+    }
+  }
+}

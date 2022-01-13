@@ -1,0 +1,9 @@
+{
+  "tiskelCashRegisterManagerApp": {
+    "TerminalPayedByType": {
+      "null": "",
+      "DRIVER": "DRIVER",
+      "TAXI": "TAXI"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="cashRegister">
+      <h2 data-cy="cashRegisterDetailsHeading">
+        <span jhiTranslate="tiskelCashRegisterManagerApp.cashRegister.detail.title">Cash Register</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ cashRegister.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.cashRegister.created">Created</span></dt>
+        <dd>
+          <span>{{ cashRegister.created | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.cashRegister.lastUpdate">Last Update</span></dt>
+        <dd>
+          <span>{{ cashRegister.lastUpdate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.cashRegister.name">Name</span></dt>
+        <dd>
+          <span>{{ cashRegister.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.cashRegister.description">Description</span></dt>
+        <dd>
+          <span>{{ cashRegister.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.cashRegister.elzabId">Elzab Id</span></dt>
+        <dd>
+          <span>{{ cashRegister.elzabId }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.cashRegister.elzabLicense">Elzab License</span></dt>
+        <dd>
+          <span>{{ cashRegister.elzabLicense }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.cashRegister.active">Active</span></dt>
+        <dd>
+          <span>{{ cashRegister.active }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.cashRegister.errorMessage">Error Message</span></dt>
+        <dd>
+          <span>{{ cashRegister.errorMessage }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.cashRegister.company">Company</span></dt>
+        <dd>
+          <div *ngIf="cashRegister.company">
+            <a [routerLink]="['/company', cashRegister.company?.id, 'view']">{{ cashRegister.company?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/cash-register', cashRegister.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+id;status;created;order_id;price;tiskel_corporate_id;tiskel_license_id;taxi_number;driver_id;customer_id;customer_phone_number;customer_email;email_sent_status;delivery_type;printer_type;json_data;print_data;jwt_data;error_message;company_id
+1;IN_PROGRESS;2022-01-12T23:32:14;62852;17062;32488;17251;94960;96453;62330;Euro Mission;mobile Sleek;Borders bypass;EMAIL_OR_SMS;Corporate bluetooth;connecting Vista quantify;info-mediaries olive Real;Plastic Avon Branch;Lesotho;1
+2;NEW;2022-01-12T13:19:12;18326;84973;189;7247;69709;91140;17958;deposit;quantify;Books Home Opolskie;PAPER_AND_EMAIL;Response;quantifying;grid-enabled;fuchsia;XML Branding;2
+3;IN_PROGRESS;2022-01-12T12:04:00;82803;83497;30569;27955;47188;2094;50462;global;CSS;bypass Bacon;PAPER_AND_SMS;neural-net Computer;Sleek;Avon harness;Optimization revolutionary Warmińsko-mazurskie;Health digital;3
+4;FAILED;2022-01-12T12:10:54;71006;96275;17069;23222;87700;49318;55996;microchip payment;Berkshire;Mission Sausages Bike;PAPER_AND_SMS;cohesive Buckinghamshire Checking;SDD;Buckinghamshire redundant;Integration Fantastic;parse digital;4
+5;FAILED;2022-01-13T07:48:53;12431;3837;93478;31162;34530;26129;8441;Dinar Account;Senior Brand;program Wybrzeże;EMAIL;Auto;Freeway;Investment;Account;Corporate foreground Jewelery;5
+6;IN_PROGRESS;2022-01-12T23:52:10;95219;20147;17489;85588;64639;20761;89078;Baby;XSS projection Loan;XSS global Games;EMAIL_AND_SMS;teal;viral out-of-the-box;Kamerun Advanced;knowledge;Turnpike Optional;6
+7;FAILED;2022-01-13T03:15:14;72472;69710;53932;77899;35340;45554;48322;Oman;Incredible frictionless bus;Liaison deposit;PAPER_AND_EMAIL;Reduced Wooden Markets;Avon;Gorgeous;Plastic contextually-based deposit;quantifying;7
+8;NEW;2022-01-13T07:49:47;83862;7851;83828;29961;41756;89415;69070;optical repurpose Falls;Account Dynamic Horizontal;optical;EMAIL_OR_SMS;distributed intangible Dżibuti;Cotton impactful Buckinghamshire;Pound Account;Principal Granite;intuitive Fish;8
+9;IN_PROGRESS;2022-01-13T04:35:28;62999;23998;95338;59585;60140;31617;60686;SCSI Berkshire;Way mobile;Computer Dollar;PAPER_AND_EMAIL;feed Shirt;neural;Assurance Consultant;withdrawal;Internal;9
+10;FAILED;2022-01-13T05:29:52;98866;65685;48076;60265;66788;69974;74489;Health Investor;intranet back;robust;PAPER;Mauritius Avon;paradigms Lead program;Freeway Colon;violet primary migration;payment;10

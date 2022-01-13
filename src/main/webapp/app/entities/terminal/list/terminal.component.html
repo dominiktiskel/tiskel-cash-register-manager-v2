@@ -1,0 +1,151 @@
+<div>
+  <h2 id="page-heading" data-cy="TerminalHeading">
+    <span jhiTranslate="tiskelCashRegisterManagerApp.terminal.home.title">Terminals</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="tiskelCashRegisterManagerApp.terminal.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-terminal"
+        [routerLink]="['/terminal/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="tiskelCashRegisterManagerApp.terminal.home.createLabel"> Create a new Terminal </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="terminals?.length === 0">
+    <span jhiTranslate="tiskelCashRegisterManagerApp.terminal.home.notFound">No terminals found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="terminals && terminals.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="created">
+            <span jhiTranslate="tiskelCashRegisterManagerApp.terminal.created">Created</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="payedBy">
+            <span jhiTranslate="tiskelCashRegisterManagerApp.terminal.payedBy">Payed By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="payedToDate">
+            <span jhiTranslate="tiskelCashRegisterManagerApp.terminal.payedToDate">Payed To Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="number">
+            <span jhiTranslate="tiskelCashRegisterManagerApp.terminal.number">Number</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="name">
+            <span jhiTranslate="tiskelCashRegisterManagerApp.terminal.name">Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <span jhiTranslate="tiskelCashRegisterManagerApp.terminal.description">Description</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="subscriptionRenewalEnabled">
+            <span jhiTranslate="tiskelCashRegisterManagerApp.terminal.subscriptionRenewalEnabled">Subscription Renewal Enabled</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="subscriptionRenewalTrialCount">
+            <span jhiTranslate="tiskelCashRegisterManagerApp.terminal.subscriptionRenewalTrialCount">Subscription Renewal Trial Count</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="subscriptionPeriod">
+            <span jhiTranslate="tiskelCashRegisterManagerApp.terminal.subscriptionPeriod">Subscription Period</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="active">
+            <span jhiTranslate="tiskelCashRegisterManagerApp.terminal.active">Active</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="errorMessage">
+            <span jhiTranslate="tiskelCashRegisterManagerApp.terminal.errorMessage">Error Message</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="company.id">
+            <span jhiTranslate="tiskelCashRegisterManagerApp.terminal.company">Company</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let terminal of terminals; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/terminal', terminal.id, 'view']">{{ terminal.id }}</a>
+          </td>
+          <td>{{ terminal.created | formatMediumDatetime }}</td>
+          <td jhiTranslate="{{ 'tiskelCashRegisterManagerApp.TerminalPayedByType.' + terminal.payedBy }}">{{ terminal.payedBy }}</td>
+          <td>{{ terminal.payedToDate | formatMediumDatetime }}</td>
+          <td>{{ terminal.number }}</td>
+          <td>{{ terminal.name }}</td>
+          <td>{{ terminal.description }}</td>
+          <td>{{ terminal.subscriptionRenewalEnabled }}</td>
+          <td>{{ terminal.subscriptionRenewalTrialCount }}</td>
+          <td jhiTranslate="{{ 'tiskelCashRegisterManagerApp.TerminalSubscriptionPeriod.' + terminal.subscriptionPeriod }}">
+            {{ terminal.subscriptionPeriod }}
+          </td>
+          <td>{{ terminal.active }}</td>
+          <td>{{ terminal.errorMessage }}</td>
+          <td>
+            <div *ngIf="terminal.company">
+              <a [routerLink]="['/company', terminal.company?.id, 'view']">{{ terminal.company?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/terminal', terminal.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/terminal', terminal.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(terminal)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="terminals && terminals.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

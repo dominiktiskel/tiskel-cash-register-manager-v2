@@ -1,0 +1,142 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-payment-item-heading"
+        data-cy="PaymentItemCreateUpdateHeading"
+        jhiTranslate="tiskelCashRegisterManagerApp.paymentItem.home.createOrEditLabel"
+      >
+        Create or edit a Payment Item
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.paymentItem.created" for="field_created"
+            >Created</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_created"
+              data-cy="created"
+              type="datetime-local"
+              class="form-control"
+              name="created"
+              formControlName="created"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('created')!.invalid && (editForm.get('created')!.dirty || editForm.get('created')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('created')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('created')?.errors?.ZonedDateTimelocal"
+              jhiTranslate="entity.validation.ZonedDateTimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.paymentItem.daysPayed" for="field_daysPayed"
+            >Days Payed</label
+          >
+          <input type="number" class="form-control" name="daysPayed" id="field_daysPayed" data-cy="daysPayed" formControlName="daysPayed" />
+          <div *ngIf="editForm.get('daysPayed')!.invalid && (editForm.get('daysPayed')!.dirty || editForm.get('daysPayed')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('daysPayed')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('daysPayed')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.paymentItem.terminal" for="field_terminal"
+            >Terminal</label
+          >
+          <select class="form-control" id="field_terminal" data-cy="terminal" name="terminal" formControlName="terminal">
+            <option *ngIf="!editForm.get('terminal')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="terminalOption.id === editForm.get('terminal')!.value?.id ? editForm.get('terminal')!.value : terminalOption"
+              *ngFor="let terminalOption of terminalsSharedCollection; trackBy: trackTerminalById"
+            >
+              {{ terminalOption.id }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['terminal'])!.invalid && (editForm.get(['terminal'])!.dirty || editForm.get(['terminal'])!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['terminal'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.paymentItem.payment" for="field_payment"
+            >Payment</label
+          >
+          <select class="form-control" id="field_payment" data-cy="payment" name="payment" formControlName="payment">
+            <option *ngIf="!editForm.get('payment')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="paymentOption.id === editForm.get('payment')!.value?.id ? editForm.get('payment')!.value : paymentOption"
+              *ngFor="let paymentOption of paymentsSharedCollection; trackBy: trackPaymentById"
+            >
+              {{ paymentOption.id }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['payment'])!.invalid && (editForm.get(['payment'])!.dirty || editForm.get(['payment'])!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['payment'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

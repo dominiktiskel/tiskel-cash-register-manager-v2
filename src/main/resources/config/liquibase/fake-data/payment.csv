@@ -1,0 +1,11 @@
+id;created;status;type;is_subscription_renewal;error_message;company_id
+1;2022-01-13T03:10:38;NEW;CARD;true;applications haptic;1
+2;2022-01-13T06:24:20;SUCCEED;PAY_BY_LINK;false;Wooden;2
+3;2022-01-13T02:39:26;IN_PROGRESS;CARD;true;overriding Tools;3
+4;2022-01-13T04:14:18;IN_PROGRESS;CARD;false;Wooden Factors Automotive;4
+5;2022-01-12T17:04:51;NEW;CARD;false;Belarussian;5
+6;2022-01-13T08:24:24;NEW;PAY_BY_LINK;false;Avon Swedish;6
+7;2022-01-12T23:44:35;IN_PROGRESS;PAY_BY_LINK;true;deposit;7
+8;2022-01-12T17:11:41;IN_PROGRESS;PAY_BY_LINK;false;Steel haptic Key;8
+9;2022-01-13T04:27:22;FAILED;CARD;true;compressing Wielkopolskie;9
+10;2022-01-13T11:13:04;IN_PROGRESS;PAY_BY_LINK;true;Interactions;10

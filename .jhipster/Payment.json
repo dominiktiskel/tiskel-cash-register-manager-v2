@@ -1,0 +1,62 @@
+{
+  "name": "Payment",
+  "fields": [
+    {
+      "fieldName": "created",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "PaymentStatus",
+      "fieldValues": "NEW,IN_PROGRESS,SUCCEED,FAILED",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "PaymentType",
+      "fieldValues": "PAY_BY_LINK,CARD",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "isSubscriptionRenewal",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "errorMessage",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "paymentItem",
+      "otherEntityRelationshipName": "payment",
+      "relationshipName": "paymentItem"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "company",
+      "otherEntityRelationshipName": "payment",
+      "relationshipValidateRules": "required",
+      "relationshipName": "company"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "invoice",
+      "otherEntityRelationshipName": "payment",
+      "relationshipName": "invoice"
+    }
+  ],
+  "entityTableName": "payment",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20220113115812"
+}

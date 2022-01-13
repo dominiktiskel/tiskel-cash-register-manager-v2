@@ -1,0 +1,33 @@
+{
+  "tiskelCashRegisterManagerApp": {
+    "cashRegister": {
+      "home": {
+        "title": "Cash Registers",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Cash Register",
+        "createOrEditLabel": "Create or edit a Cash Register",
+        "notFound": "No Cash Registers found"
+      },
+      "created": "A new Cash Register is created with identifier {{ param }}",
+      "updated": "A Cash Register is updated with identifier {{ param }}",
+      "deleted": "A Cash Register is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Cash Register {{ id }}?"
+      },
+      "detail": {
+        "title": "Cash Register"
+      },
+      "id": "ID",
+      "created": "Created",
+      "lastUpdate": "Last Update",
+      "name": "Name",
+      "description": "Description",
+      "elzabId": "Elzab Id",
+      "elzabLicense": "Elzab License",
+      "active": "Active",
+      "errorMessage": "Error Message",
+      "receipt": "Receipt",
+      "company": "Company"
+    }
+  }
+}

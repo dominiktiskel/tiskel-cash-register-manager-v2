@@ -7,6 +7,15 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Encje",
+        "receipt": "Receipt",
+        "company": "Company",
+        "cashRegister": "Cash Register",
+        "terminal": "Terminal",
+        "payment": "Payment",
+        "paymentItem": "Payment Item",
+        "invoice": "Invoice",
+        "setting": "Setting",
+        "log": "Log",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

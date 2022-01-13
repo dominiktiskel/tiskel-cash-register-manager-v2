@@ -1,0 +1,11 @@
+id;created;payed_by;payed_to_date;number;name;description;subscription_renewal_enabled;subscription_renewal_trial_count;subscription_period;active;error_message;company_id
+1;2022-01-13T00:25:40;TAXI;2022-01-12T18:55:49;20109;1080p optical;protocol bandwidth;true;82089;WEEK;false;middleware Principal Laos;1
+2;2022-01-12T13:12:54;TAXI;2022-01-13T03:15:22;14261;Sudan Warmińsko-mazurskie orange;e-business Jemen International;false;12625;YEAR;true;EXE deploy Krone;2
+3;2022-01-12T23:54:56;TAXI;2022-01-13T03:32:35;73050;payment Soft Ergonomic;National Accounts;true;1554;WEEK;true;infrastructure;3
+4;2022-01-12T23:12:47;TAXI;2022-01-13T01:54:32;78709;digital;PNG;false;39982;MONTH;true;Incredible;4
+5;2022-01-13T02:34:20;TAXI;2022-01-13T04:58:45;93294;National navigating XSS;ROI Investor;false;1136;WEEK;false;salmon matrices tangible;5
+6;2022-01-12T22:22:45;TAXI;2022-01-12T23:14:46;58311;transitional;parsing Wooden;true;39863;MONTH;false;recontextualize Beauty;6
+7;2022-01-13T02:58:46;DRIVER;2022-01-13T07:57:13;40408;optical as;protocol online;false;38859;YEAR;false;Money Trace;7
+8;2022-01-13T04:57:51;TAXI;2022-01-13T03:44:17;31578;bus Refined District;withdrawal;false;38570;YEAR;false;Plastic boliviano Buckinghamshire;8
+9;2022-01-13T01:49:11;DRIVER;2022-01-12T12:51:01;82678;structure cross-platform;deposit Intelligent;true;82709;YEAR;true;distributed e-business;9
+10;2022-01-12T14:06:19;TAXI;2022-01-12T23:33:33;27436;Account;Associate Ergonomic;true;43788;WEEK;false;repurpose Katar application;10

@@ -1,0 +1,178 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-cash-register-heading"
+        data-cy="CashRegisterCreateUpdateHeading"
+        jhiTranslate="tiskelCashRegisterManagerApp.cashRegister.home.createOrEditLabel"
+      >
+        Create or edit a Cash Register
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.cashRegister.created" for="field_created"
+            >Created</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_created"
+              data-cy="created"
+              type="datetime-local"
+              class="form-control"
+              name="created"
+              formControlName="created"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('created')!.invalid && (editForm.get('created')!.dirty || editForm.get('created')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('created')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('created')?.errors?.ZonedDateTimelocal"
+              jhiTranslate="entity.validation.ZonedDateTimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.cashRegister.lastUpdate" for="field_lastUpdate"
+            >Last Update</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_lastUpdate"
+              data-cy="lastUpdate"
+              type="datetime-local"
+              class="form-control"
+              name="lastUpdate"
+              formControlName="lastUpdate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.cashRegister.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.cashRegister.description" for="field_description"
+            >Description</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.cashRegister.elzabId" for="field_elzabId"
+            >Elzab Id</label
+          >
+          <input type="text" class="form-control" name="elzabId" id="field_elzabId" data-cy="elzabId" formControlName="elzabId" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.cashRegister.elzabLicense" for="field_elzabLicense"
+            >Elzab License</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="elzabLicense"
+            id="field_elzabLicense"
+            data-cy="elzabLicense"
+            formControlName="elzabLicense"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.cashRegister.active" for="field_active"
+            >Active</label
+          >
+          <input type="checkbox" class="form-check" name="active" id="field_active" data-cy="active" formControlName="active" />
+          <div *ngIf="editForm.get('active')!.invalid && (editForm.get('active')!.dirty || editForm.get('active')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('active')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.cashRegister.errorMessage" for="field_errorMessage"
+            >Error Message</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="errorMessage"
+            id="field_errorMessage"
+            data-cy="errorMessage"
+            formControlName="errorMessage"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.cashRegister.company" for="field_company"
+            >Company</label
+          >
+          <select class="form-control" id="field_company" data-cy="company" name="company" formControlName="company">
+            <option *ngIf="!editForm.get('company')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="companyOption.id === editForm.get('company')!.value?.id ? editForm.get('company')!.value : companyOption"
+              *ngFor="let companyOption of companiesSharedCollection; trackBy: trackCompanyById"
+            >
+              {{ companyOption.id }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['company'])!.invalid && (editForm.get(['company'])!.dirty || editForm.get(['company'])!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['company'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

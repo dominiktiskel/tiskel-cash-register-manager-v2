@@ -1,0 +1,112 @@
+{
+  "name": "Receipt",
+  "fields": [
+    {
+      "fieldName": "status",
+      "fieldType": "ReceiptStatus",
+      "fieldValues": "NEW,IN_PROGRESS,COMPLETED,FAILED"
+    },
+    {
+      "fieldName": "created",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "orderId",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "price",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "tiskelCorporateId",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "tiskelLicenseId",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "taxiNumber",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "driverId",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "customerId",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "customerPhoneNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "customerEmail",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "emailSentStatus",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "deliveryType",
+      "fieldType": "DeliveryType",
+      "fieldValues": "PAPER,EMAIL,SMS,EMAIL_OR_SMS,EMAIL_AND_SMS,PAPER_AND_EMAIL,PAPER_AND_SMS,PAPER_AND_EMAIL_OR_SMS,PAPER_AND_EMAIL_AND_SMS"
+    },
+    {
+      "fieldName": "printerType",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "jsonData",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "printData",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "jwtData",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "errorMessage",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "company",
+      "otherEntityRelationshipName": "receipt",
+      "relationshipValidateRules": "required",
+      "relationshipName": "company"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "cashRegister",
+      "otherEntityRelationshipName": "receipt",
+      "relationshipName": "cashRegister"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "terminal",
+      "otherEntityRelationshipName": "receipt",
+      "relationshipName": "terminal"
+    }
+  ],
+  "entityTableName": "receipt",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20220113115808"
+}
