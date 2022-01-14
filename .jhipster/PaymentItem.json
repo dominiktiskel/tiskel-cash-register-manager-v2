@@ -1,0 +1,41 @@
+{
+  "name": "PaymentItem",
+  "fields": [
+    {
+      "fieldName": "created",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "daysPayed",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "terminal",
+      "otherEntityRelationshipName": "paymentItem",
+      "relationshipValidateRules": "required",
+      "relationshipName": "terminal"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "payment",
+      "otherEntityRelationshipName": "paymentItem",
+      "relationshipValidateRules": "required",
+      "relationshipName": "payment"
+    }
+  ],
+  "entityTableName": "payment_item",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20220114100945"
+}

@@ -42,7 +42,9 @@
     "clientTheme": "none",
     "clientThemeVariant": "",
     "reactive": false,
-    "enableGradleEnterprise": false
+    "enableGradleEnterprise": false,
+    "entities": ["Receipt", "Company", "CashRegister", "Terminal", "Payment", "PaymentItem", "Invoice", "Setting", "Log"],
+    "lastLiquibaseTimestamp": 1642154988000
   },
   "git-provider": "GitHub",
   "git-company": "dominiktiskel",

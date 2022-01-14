@@ -1,0 +1,44 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="setting">
+      <h2 data-cy="settingDetailsHeading"><span jhiTranslate="tiskelCashRegisterManagerApp.setting.detail.title">Setting</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ setting.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.setting.key">Key</span></dt>
+        <dd>
+          <span>{{ setting.key }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.setting.value">Value</span></dt>
+        <dd>
+          <span>{{ setting.value }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.setting.defaultValue">Default Value</span></dt>
+        <dd>
+          <span>{{ setting.defaultValue }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.setting.description">Description</span></dt>
+        <dd>
+          <span>{{ setting.description }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/setting', setting.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

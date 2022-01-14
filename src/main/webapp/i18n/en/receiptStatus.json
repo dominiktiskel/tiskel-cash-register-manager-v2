@@ -1,0 +1,11 @@
+{
+  "tiskelCashRegisterManagerApp": {
+    "ReceiptStatus": {
+      "null": "",
+      "NEW": "NEW",
+      "IN_PROGRESS": "IN_PROGRESS",
+      "COMPLETED": "COMPLETED",
+      "FAILED": "FAILED"
+    }
+  }
+}

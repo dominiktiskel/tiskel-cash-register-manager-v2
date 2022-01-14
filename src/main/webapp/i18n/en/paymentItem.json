@@ -1,0 +1,27 @@
+{
+  "tiskelCashRegisterManagerApp": {
+    "paymentItem": {
+      "home": {
+        "title": "Payment Items",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Payment Item",
+        "createOrEditLabel": "Create or edit a Payment Item",
+        "notFound": "No Payment Items found"
+      },
+      "created": "A new Payment Item is created with identifier {{ param }}",
+      "updated": "A Payment Item is updated with identifier {{ param }}",
+      "deleted": "A Payment Item is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Payment Item {{ id }}?"
+      },
+      "detail": {
+        "title": "Payment Item"
+      },
+      "id": "ID",
+      "created": "Created",
+      "daysPayed": "Days Payed",
+      "terminal": "Terminal",
+      "payment": "Payment"
+    }
+  }
+}

@@ -1,0 +1,321 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-receipt-heading"
+        data-cy="ReceiptCreateUpdateHeading"
+        jhiTranslate="tiskelCashRegisterManagerApp.receipt.home.createOrEditLabel"
+      >
+        Create or edit a Receipt
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.receipt.status" for="field_status">Status</label>
+          <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
+            <option [ngValue]="null">{{ 'tiskelCashRegisterManagerApp.ReceiptStatus.null' | translate }}</option>
+            <option *ngFor="let receiptStatus of receiptStatusValues" [value]="receiptStatus">
+              {{ 'tiskelCashRegisterManagerApp.ReceiptStatus.' + receiptStatus | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.receipt.created" for="field_created">Created</label>
+          <div class="d-flex">
+            <input
+              id="field_created"
+              data-cy="created"
+              type="datetime-local"
+              class="form-control"
+              name="created"
+              formControlName="created"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('created')!.invalid && (editForm.get('created')!.dirty || editForm.get('created')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('created')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('created')?.errors?.ZonedDateTimelocal"
+              jhiTranslate="entity.validation.ZonedDateTimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.receipt.orderId" for="field_orderId">Order Id</label>
+          <input type="number" class="form-control" name="orderId" id="field_orderId" data-cy="orderId" formControlName="orderId" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.receipt.price" for="field_price">Price</label>
+          <input type="number" class="form-control" name="price" id="field_price" data-cy="price" formControlName="price" />
+          <div *ngIf="editForm.get('price')!.invalid && (editForm.get('price')!.dirty || editForm.get('price')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('price')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('price')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="tiskelCashRegisterManagerApp.receipt.tiskelCorporateId"
+            for="field_tiskelCorporateId"
+            >Tiskel Corporate Id</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="tiskelCorporateId"
+            id="field_tiskelCorporateId"
+            data-cy="tiskelCorporateId"
+            formControlName="tiskelCorporateId"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.receipt.tiskelLicenseId" for="field_tiskelLicenseId"
+            >Tiskel License Id</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="tiskelLicenseId"
+            id="field_tiskelLicenseId"
+            data-cy="tiskelLicenseId"
+            formControlName="tiskelLicenseId"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.receipt.taxiNumber" for="field_taxiNumber"
+            >Taxi Number</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="taxiNumber"
+            id="field_taxiNumber"
+            data-cy="taxiNumber"
+            formControlName="taxiNumber"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.receipt.driverId" for="field_driverId"
+            >Driver Id</label
+          >
+          <input type="number" class="form-control" name="driverId" id="field_driverId" data-cy="driverId" formControlName="driverId" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.receipt.customerId" for="field_customerId"
+            >Customer Id</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="customerId"
+            id="field_customerId"
+            data-cy="customerId"
+            formControlName="customerId"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="tiskelCashRegisterManagerApp.receipt.customerPhoneNumber"
+            for="field_customerPhoneNumber"
+            >Customer Phone Number</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="customerPhoneNumber"
+            id="field_customerPhoneNumber"
+            data-cy="customerPhoneNumber"
+            formControlName="customerPhoneNumber"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.receipt.customerEmail" for="field_customerEmail"
+            >Customer Email</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="customerEmail"
+            id="field_customerEmail"
+            data-cy="customerEmail"
+            formControlName="customerEmail"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.receipt.emailSentStatus" for="field_emailSentStatus"
+            >Email Sent Status</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="emailSentStatus"
+            id="field_emailSentStatus"
+            data-cy="emailSentStatus"
+            formControlName="emailSentStatus"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.receipt.deliveryType" for="field_deliveryType"
+            >Delivery Type</label
+          >
+          <select class="form-control" name="deliveryType" formControlName="deliveryType" id="field_deliveryType" data-cy="deliveryType">
+            <option [ngValue]="null">{{ 'tiskelCashRegisterManagerApp.DeliveryType.null' | translate }}</option>
+            <option *ngFor="let deliveryType of deliveryTypeValues" [value]="deliveryType">
+              {{ 'tiskelCashRegisterManagerApp.DeliveryType.' + deliveryType | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.receipt.printerType" for="field_printerType"
+            >Printer Type</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="printerType"
+            id="field_printerType"
+            data-cy="printerType"
+            formControlName="printerType"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.receipt.jsonData" for="field_jsonData"
+            >Json Data</label
+          >
+          <input type="text" class="form-control" name="jsonData" id="field_jsonData" data-cy="jsonData" formControlName="jsonData" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.receipt.printData" for="field_printData"
+            >Print Data</label
+          >
+          <input type="text" class="form-control" name="printData" id="field_printData" data-cy="printData" formControlName="printData" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.receipt.jwtData" for="field_jwtData">Jwt Data</label>
+          <input type="text" class="form-control" name="jwtData" id="field_jwtData" data-cy="jwtData" formControlName="jwtData" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.receipt.errorMessage" for="field_errorMessage"
+            >Error Message</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="errorMessage"
+            id="field_errorMessage"
+            data-cy="errorMessage"
+            formControlName="errorMessage"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.receipt.company" for="field_company">Company</label>
+          <select class="form-control" id="field_company" data-cy="company" name="company" formControlName="company">
+            <option *ngIf="!editForm.get('company')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="companyOption.id === editForm.get('company')!.value?.id ? editForm.get('company')!.value : companyOption"
+              *ngFor="let companyOption of companiesSharedCollection; trackBy: trackCompanyById"
+            >
+              {{ companyOption.id }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['company'])!.invalid && (editForm.get(['company'])!.dirty || editForm.get(['company'])!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['company'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.receipt.cashRegister" for="field_cashRegister"
+            >Cash Register</label
+          >
+          <select class="form-control" id="field_cashRegister" data-cy="cashRegister" name="cashRegister" formControlName="cashRegister">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                cashRegisterOption.id === editForm.get('cashRegister')!.value?.id ? editForm.get('cashRegister')!.value : cashRegisterOption
+              "
+              *ngFor="let cashRegisterOption of cashRegistersSharedCollection; trackBy: trackCashRegisterById"
+            >
+              {{ cashRegisterOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.receipt.terminal" for="field_terminal"
+            >Terminal</label
+          >
+          <select class="form-control" id="field_terminal" data-cy="terminal" name="terminal" formControlName="terminal">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="terminalOption.id === editForm.get('terminal')!.value?.id ? editForm.get('terminal')!.value : terminalOption"
+              *ngFor="let terminalOption of terminalsSharedCollection; trackBy: trackTerminalById"
+            >
+              {{ terminalOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Receipt.
+    -->
+    <changeSet id="20220114100940-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="company_id"
+                                 baseTableName="receipt"
+                                 constraintName="fk_receipt__company_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="company"/>
+
+        <addForeignKeyConstraint baseColumnNames="cash_register_id"
+                                 baseTableName="receipt"
+                                 constraintName="fk_receipt__cash_register_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cash_register"/>
+
+        <addForeignKeyConstraint baseColumnNames="terminal_id"
+                                 baseTableName="receipt"
+                                 constraintName="fk_receipt__terminal_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="terminal"/>
+    </changeSet>
+</databaseChangeLog>

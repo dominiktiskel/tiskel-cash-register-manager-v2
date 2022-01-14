@@ -1,0 +1,82 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="terminal">
+      <h2 data-cy="terminalDetailsHeading"><span jhiTranslate="tiskelCashRegisterManagerApp.terminal.detail.title">Terminal</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ terminal.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.terminal.created">Created</span></dt>
+        <dd>
+          <span>{{ terminal.created | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.terminal.payedBy">Payed By</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'tiskelCashRegisterManagerApp.TerminalPayedByType.' + terminal.payedBy }}">{{ terminal.payedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.terminal.payedToDate">Payed To Date</span></dt>
+        <dd>
+          <span>{{ terminal.payedToDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.terminal.number">Number</span></dt>
+        <dd>
+          <span>{{ terminal.number }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.terminal.name">Name</span></dt>
+        <dd>
+          <span>{{ terminal.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.terminal.description">Description</span></dt>
+        <dd>
+          <span>{{ terminal.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.terminal.subscriptionRenewalEnabled">Subscription Renewal Enabled</span></dt>
+        <dd>
+          <span>{{ terminal.subscriptionRenewalEnabled }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="tiskelCashRegisterManagerApp.terminal.subscriptionRenewalTrialCount">Subscription Renewal Trial Count</span>
+        </dt>
+        <dd>
+          <span>{{ terminal.subscriptionRenewalTrialCount }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.terminal.subscriptionPeriod">Subscription Period</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'tiskelCashRegisterManagerApp.TerminalSubscriptionPeriod.' + terminal.subscriptionPeriod }}">{{
+            terminal.subscriptionPeriod
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.terminal.active">Active</span></dt>
+        <dd>
+          <span>{{ terminal.active }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.terminal.errorMessage">Error Message</span></dt>
+        <dd>
+          <span>{{ terminal.errorMessage }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.terminal.company">Company</span></dt>
+        <dd>
+          <div *ngIf="terminal.company">
+            <a [routerLink]="['/company', terminal.company?.id, 'view']">{{ terminal.company?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/terminal', terminal.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

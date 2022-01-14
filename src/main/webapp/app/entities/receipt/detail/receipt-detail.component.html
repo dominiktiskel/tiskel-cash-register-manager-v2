@@ -1,0 +1,118 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="receipt">
+      <h2 data-cy="receiptDetailsHeading"><span jhiTranslate="tiskelCashRegisterManagerApp.receipt.detail.title">Receipt</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ receipt.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.receipt.status">Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'tiskelCashRegisterManagerApp.ReceiptStatus.' + receipt.status }}">{{ receipt.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.receipt.created">Created</span></dt>
+        <dd>
+          <span>{{ receipt.created | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.receipt.orderId">Order Id</span></dt>
+        <dd>
+          <span>{{ receipt.orderId }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.receipt.price">Price</span></dt>
+        <dd>
+          <span>{{ receipt.price }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.receipt.tiskelCorporateId">Tiskel Corporate Id</span></dt>
+        <dd>
+          <span>{{ receipt.tiskelCorporateId }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.receipt.tiskelLicenseId">Tiskel License Id</span></dt>
+        <dd>
+          <span>{{ receipt.tiskelLicenseId }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.receipt.taxiNumber">Taxi Number</span></dt>
+        <dd>
+          <span>{{ receipt.taxiNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.receipt.driverId">Driver Id</span></dt>
+        <dd>
+          <span>{{ receipt.driverId }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.receipt.customerId">Customer Id</span></dt>
+        <dd>
+          <span>{{ receipt.customerId }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.receipt.customerPhoneNumber">Customer Phone Number</span></dt>
+        <dd>
+          <span>{{ receipt.customerPhoneNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.receipt.customerEmail">Customer Email</span></dt>
+        <dd>
+          <span>{{ receipt.customerEmail }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.receipt.emailSentStatus">Email Sent Status</span></dt>
+        <dd>
+          <span>{{ receipt.emailSentStatus }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.receipt.deliveryType">Delivery Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'tiskelCashRegisterManagerApp.DeliveryType.' + receipt.deliveryType }}">{{ receipt.deliveryType }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.receipt.printerType">Printer Type</span></dt>
+        <dd>
+          <span>{{ receipt.printerType }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.receipt.jsonData">Json Data</span></dt>
+        <dd>
+          <span>{{ receipt.jsonData }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.receipt.printData">Print Data</span></dt>
+        <dd>
+          <span>{{ receipt.printData }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.receipt.jwtData">Jwt Data</span></dt>
+        <dd>
+          <span>{{ receipt.jwtData }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.receipt.errorMessage">Error Message</span></dt>
+        <dd>
+          <span>{{ receipt.errorMessage }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.receipt.company">Company</span></dt>
+        <dd>
+          <div *ngIf="receipt.company">
+            <a [routerLink]="['/company', receipt.company?.id, 'view']">{{ receipt.company?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.receipt.cashRegister">Cash Register</span></dt>
+        <dd>
+          <div *ngIf="receipt.cashRegister">
+            <a [routerLink]="['/cash-register', receipt.cashRegister?.id, 'view']">{{ receipt.cashRegister?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.receipt.terminal">Terminal</span></dt>
+        <dd>
+          <div *ngIf="receipt.terminal">
+            <a [routerLink]="['/terminal', receipt.terminal?.id, 'view']">{{ receipt.terminal?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/receipt', receipt.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

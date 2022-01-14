@@ -1,0 +1,100 @@
+<div>
+  <h2 id="page-heading" data-cy="LogHeading">
+    <span jhiTranslate="tiskelCashRegisterManagerApp.log.home.title">Logs</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="tiskelCashRegisterManagerApp.log.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-log"
+        [routerLink]="['/log/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="tiskelCashRegisterManagerApp.log.home.createLabel"> Create a new Log </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="logs?.length === 0">
+    <span jhiTranslate="tiskelCashRegisterManagerApp.log.home.notFound">No logs found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="logs && logs.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="created">
+            <span jhiTranslate="tiskelCashRegisterManagerApp.log.created">Created</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="type">
+            <span jhiTranslate="tiskelCashRegisterManagerApp.log.type">Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="message">
+            <span jhiTranslate="tiskelCashRegisterManagerApp.log.message">Message</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="data">
+            <span jhiTranslate="tiskelCashRegisterManagerApp.log.data">Data</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let log of logs; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/log', log.id, 'view']">{{ log.id }}</a>
+          </td>
+          <td>{{ log.created | formatMediumDatetime }}</td>
+          <td jhiTranslate="{{ 'tiskelCashRegisterManagerApp.LogType.' + log.type }}">{{ log.type }}</td>
+          <td>{{ log.message }}</td>
+          <td>{{ log.data }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/log', log.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/log', log.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(log)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="logs && logs.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

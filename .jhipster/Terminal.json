@@ -1,0 +1,90 @@
+{
+  "name": "Terminal",
+  "fields": [
+    {
+      "fieldName": "created",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "payedBy",
+      "fieldType": "TerminalPayedByType",
+      "fieldValues": "DRIVER,TAXI",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "payedToDate",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "number",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "subscriptionRenewalEnabled",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "subscriptionRenewalTrialCount",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "subscriptionPeriod",
+      "fieldType": "TerminalSubscriptionPeriod",
+      "fieldValues": "WEEK,MONTH,YEAR",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "active",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "errorMessage",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "receipt",
+      "otherEntityRelationshipName": "terminal",
+      "relationshipName": "receipt"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "paymentItem",
+      "otherEntityRelationshipName": "terminal",
+      "relationshipName": "paymentItem"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "company",
+      "otherEntityRelationshipName": "terminal",
+      "relationshipValidateRules": "required",
+      "relationshipName": "company"
+    }
+  ],
+  "entityTableName": "terminal",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20220114100943"
+}

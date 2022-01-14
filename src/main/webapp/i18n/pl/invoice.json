@@ -1,0 +1,31 @@
+{
+  "tiskelCashRegisterManagerApp": {
+    "invoice": {
+      "home": {
+        "title": "Invoice",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Dodaj Invoice",
+        "createOrEditLabel": "Dodaj lub edytuj: Invoice",
+        "notFound": "No Invoices found"
+      },
+      "created": "Utworzono nowy obiekt typu Invoice z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Invoice z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Invoice z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Invoice {{ id }}?"
+      },
+      "detail": {
+        "title": "Invoice"
+      },
+      "id": "ID",
+      "created": "Created",
+      "payedDate": "Payed Date",
+      "periodBeginDate": "Period Begin Date",
+      "periodEndDate": "Period End Date",
+      "number": "Number",
+      "jsonData": "Json Data",
+      "payment": "Payment",
+      "company": "Company"
+    }
+  }
+}
