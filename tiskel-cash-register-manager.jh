@@ -1,0 +1,161 @@
+
+
+entity Receipt {
+	status ReceiptStatus,
+	created ZonedDateTime required,
+    orderId Integer,
+    price Integer required,
+    tiskelCorporateId Integer,
+    tiskelLicenseId Integer,
+    taxiNumber Integer,
+    driverId Integer,
+    customerId Integer,
+  	customerPhoneNumber String,
+    customerEmail String,
+    emailSentStatus String,
+    deliveryType DeliveryType,
+    printerType String,
+    jsonData String,
+    printData String,
+    jwtData String,
+    errorMessage String
+}
+
+entity Company {
+	created ZonedDateTime required,
+	nip String,
+    regon String,
+    street String,
+    city String,
+    postCode String,
+}
+
+entity CashRegister {
+	created ZonedDateTime required,
+    lastUpdate ZonedDateTime,
+	name String,
+    description String,
+	elzabId String,
+    elzabLicense String
+    active Boolean required,
+    errorMessage String
+}
+
+entity Terminal {
+	created ZonedDateTime required,
+    payedBy TerminalPayedByType required,
+    payedToDate ZonedDateTime required,
+	number Integer required,
+    name String,
+    description String,
+    subscriptionRenewalEnabled Boolean required,
+    subscriptionRenewalTrialCount Integer required,
+    subscriptionPeriod TerminalSubscriptionPeriod required,
+    active Boolean required,
+    errorMessage String
+}
+
+entity Payment {
+	created ZonedDateTime required,
+    status PaymentStatus required,
+    type PaymentType required,
+    isSubscriptionRenewal Boolean required,
+    errorMessage String
+}
+
+entity PaymentItem {
+	created ZonedDateTime required,
+    daysPayed Integer required
+}
+
+entity Invoice {
+	created ZonedDateTime required,
+    payedDate ZonedDateTime required,
+    periodBeginDate ZonedDateTime required,
+    periodEndDate ZonedDateTime required,
+    number String required,
+    jsonData String required,
+}
+
+entity Setting {
+	key String required,
+    value String required,
+    defaultValue String required,
+    description String
+}
+
+entity Log {
+	created ZonedDateTime required,
+	type LogType required,
+    message String,
+    data String
+}
+
+relationship OneToMany {
+	Company{cashRegister} to CashRegister{company required},
+    Company{receipt} to Receipt{company required},
+    Company{terminal} to Terminal{company required},
+    Company{payment} to Payment{company required},
+    Company{invoice} to Invoice{company required},
+    CashRegister{receipt} to Receipt{cashRegister},
+    Terminal{receipt} to Receipt{terminal},
+    Terminal{paymentItem} to PaymentItem{terminal required},
+    Payment{paymentItem} to PaymentItem{payment required},
+    Invoice{payment} to Payment{invoice}
+}
+
+enum DeliveryType {
+	PAPER,
+    EMAIL,
+    SMS,
+    EMAIL_OR_SMS,
+    EMAIL_AND_SMS,
+    PAPER_AND_EMAIL,
+    PAPER_AND_SMS,
+    PAPER_AND_EMAIL_OR_SMS,
+    PAPER_AND_EMAIL_AND_SMS
+}
+
+enum ReceiptStatus {
+	NEW,
+    IN_PROGRESS,
+    COMPLETED,
+    FAILED
+}
+
+enum TerminalPayedByType {
+	DRIVER,
+    TAXI
+}
+
+enum TerminalSubscriptionPeriod {
+	WEEK,
+    MONTH,
+    YEAR
+}
+
+enum PaymentStatus {
+	NEW,
+    IN_PROGRESS,
+	SUCCEED,
+    FAILED
+}
+
+enum LogType {
+	DEBUG,
+    INFO,
+    WARNING,
+    ERROR
+}
+
+enum PaymentType {
+	PAY_BY_LINK,
+    CARD
+}
+
+dto * with mapstruct
+paginate * with pagination
+service * with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

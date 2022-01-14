@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="paymentItem">
+      <h2 data-cy="paymentItemDetailsHeading">
+        <span jhiTranslate="tiskelCashRegisterManagerApp.paymentItem.detail.title">Payment Item</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ paymentItem.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.paymentItem.created">Created</span></dt>
+        <dd>
+          <span>{{ paymentItem.created | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.paymentItem.daysPayed">Days Payed</span></dt>
+        <dd>
+          <span>{{ paymentItem.daysPayed }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.paymentItem.terminal">Terminal</span></dt>
+        <dd>
+          <div *ngIf="paymentItem.terminal">
+            <a [routerLink]="['/terminal', paymentItem.terminal?.id, 'view']">{{ paymentItem.terminal?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="tiskelCashRegisterManagerApp.paymentItem.payment">Payment</span></dt>
+        <dd>
+          <div *ngIf="paymentItem.payment">
+            <a [routerLink]="['/payment', paymentItem.payment?.id, 'view']">{{ paymentItem.payment?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/payment-item', paymentItem.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

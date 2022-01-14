@@ -1,0 +1,96 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-company-heading"
+        data-cy="CompanyCreateUpdateHeading"
+        jhiTranslate="tiskelCashRegisterManagerApp.company.home.createOrEditLabel"
+      >
+        Create or edit a Company
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.company.created" for="field_created">Created</label>
+          <div class="d-flex">
+            <input
+              id="field_created"
+              data-cy="created"
+              type="datetime-local"
+              class="form-control"
+              name="created"
+              formControlName="created"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('created')!.invalid && (editForm.get('created')!.dirty || editForm.get('created')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('created')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('created')?.errors?.ZonedDateTimelocal"
+              jhiTranslate="entity.validation.ZonedDateTimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.company.nip" for="field_nip">Nip</label>
+          <input type="text" class="form-control" name="nip" id="field_nip" data-cy="nip" formControlName="nip" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.company.regon" for="field_regon">Regon</label>
+          <input type="text" class="form-control" name="regon" id="field_regon" data-cy="regon" formControlName="regon" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.company.street" for="field_street">Street</label>
+          <input type="text" class="form-control" name="street" id="field_street" data-cy="street" formControlName="street" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.company.city" for="field_city">City</label>
+          <input type="text" class="form-control" name="city" id="field_city" data-cy="city" formControlName="city" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="tiskelCashRegisterManagerApp.company.postCode" for="field_postCode"
+            >Post Code</label
+          >
+          <input type="text" class="form-control" name="postCode" id="field_postCode" data-cy="postCode" formControlName="postCode" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

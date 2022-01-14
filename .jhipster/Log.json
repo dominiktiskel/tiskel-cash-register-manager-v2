@@ -1,0 +1,35 @@
+{
+  "name": "Log",
+  "fields": [
+    {
+      "fieldName": "created",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "LogType",
+      "fieldValues": "DEBUG,INFO,WARNING,ERROR",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "message",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "data",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "log",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20220114100948"
+}
